@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+NOTES_DIR="$HOME/Documents/Notes"
+
+mkdir -p "$NOTES_DIR"
+
+filename="$(date +%F)-$(uuidgen | cut -c1-8).md"
+
+nvim "$NOTES_DIR/$filename"

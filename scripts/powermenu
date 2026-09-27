@@ -1,0 +1,11 @@
+#! /bin/sh
+
+chosen=$(printf "Power Off\nRestart\nSuspend\nLock" | rofi -dmenu -i )
+
+case "$chosen" in
+	"Power Off") poweroff ;;
+	"Restart") /sbin/reboot ;;
+	"Suspend") systemctl suspend;;
+	"Lock") i3lock -c 000000;;
+	*) exit 1 ;;
+esac

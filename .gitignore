@@ -16,6 +16,8 @@
 !autostart/
 !autostart/**
 nvim/.netrwhist
+!scripts/
+!scripts/**
 **/*.swp
 **/*.swo
 **/*~
