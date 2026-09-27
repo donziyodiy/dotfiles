@@ -13,7 +13,6 @@ local function short_uuid()
         return output[1]:sub(1, 8):lower()
     end
 
-    -- Fallback if uuidgen is unavailable
     local value = table.concat({
         tostring(vim.uv.hrtime()),
         tostring(vim.fn.getpid()),
@@ -33,7 +32,12 @@ function M.new(offset)
     local path
 
     repeat
-        filename = string.format("%s-%s.md", note_date, short_uuid())
+        filename = string.format(
+            "%s-%s.md",
+            note_date,
+            short_uuid()
+        )
+
         path = M.notes_dir .. "/" .. filename
     until vim.fn.filereadable(path) == 0
 
@@ -41,23 +45,39 @@ function M.new(offset)
 end
 
 function M.find(offset)
+    vim.fn.mkdir(M.notes_dir, "p")
+
     local options = {
         cwd = M.notes_dir,
-        prompt_title = "Notes",
+        prompt_title = "All Notes",
         hidden = true,
         no_ignore = true,
     }
 
-    -- Supplying an offset filters Telescope by that date
     if offset ~= nil then
-        options.default_text = date_with_offset(offset)
-        options.prompt_title = date_with_offset(offset) .. " Notes"
+        local note_date = date_with_offset(offset)
+
+        options.prompt_title = note_date .. " Notes"
+        options.find_command = {
+            "find",
+            ".",
+            "-maxdepth",
+            "1",
+            "-type",
+            "f",
+            "-name",
+            note_date .. "-*.md",
+            "-printf",
+            "%f\n",
+        }
     end
 
     require("telescope.builtin").find_files(options)
 end
 
 function M.grep()
+    vim.fn.mkdir(M.notes_dir, "p")
+
     require("telescope.builtin").live_grep({
         cwd = M.notes_dir,
         prompt_title = "Search Notes",
