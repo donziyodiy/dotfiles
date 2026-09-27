@@ -3,8 +3,16 @@ local keys = {
     { "<C-h>", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end },
 }
 
-for i = 1, 5, 1 do
-    table.insert(keys, { "<C-" .. i .. ">", function() require("harpoon"):list():select(i) end })
+for i = 1, 5 do
+    local index = i
+
+    table.insert(keys, {
+        "<leader>" .. index,
+        function()
+            require("harpoon"):list():select(index)
+        end,
+        desc = "Harpoon file " .. index,
+    })
 end
 
 return {
