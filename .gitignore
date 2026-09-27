@@ -1,56 +1,20 @@
-# Ignore everything by default
 *
-
-# Keep the ignore rules
 !.gitignore
 
-# i3 and status bars
 !i3/
 !i3/**
 !i3status/
 !i3status/**
 !i3blocks/
 !i3blocks/**
-!polybar/
-!polybar/**
-
-# Terminal and editor
 !kitty/
 !kitty/**
 !nvim/
 !nvim/**
 !tmux/
 !tmux/**
-
-# Desktop appearance and utilities
-!dunst/
-!dunst/**
-!picom/
-!picom/**
-!rofi/
-!rofi/**
-!nitrogen/
-!nitrogen/**
-!neofetch/
-!neofetch/**
-
-# Flameshot uses this directory on your system
-!Dharkael/
-!Dharkael/**
-
-# GTK theme
-!gtk-3.0/
-!gtk-3.0/settings.ini
-
-# Font configuration and default applications
-!fonts.conf
-!mimeapps.list
-
-# Autostart entries
 !autostart/
 !autostart/**
-
-# Never track temporary Neovim files
 nvim/.netrwhist
 **/*.swp
 **/*.swo
