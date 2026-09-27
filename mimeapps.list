@@ -1,0 +1,7 @@
+[Default Applications]
+text/html=telegram-desktop_telegram-desktop.desktop
+x-scheme-handler/tg=telegram-desktop_telegram-desktop.desktop
+
+[Added Associations]
+application/pdf=firefox_firefox.desktop;
+video/mp4=vlc.desktop;firefox.desktop;mpv.desktop;firefox_firefox.desktop;

@@ -1,0 +1,23 @@
+[volume]
+label=VOL 
+command=amixer get Master | awk -F'[][]' 'END {print $2 ($4=="off" ? " muted" : "")}'
+interval=1
+
+[brightness]
+label=BRI 
+command=brightnessctl -m | cut -d, -f4
+interval=2
+
+[network]
+label=NET 
+command=ssid=$(nmcli -t -f ACTIVE,SSID device wifi | sed -n 's/^yes://p' | head -n1); if [ -n "$ssid" ]; then echo "WiFi $ssid"; elif nmcli -t -f TYPE,STATE device | grep -q '^ethernet:connected'; then echo "Ethernet"; else echo "Offline"; fi
+interval=5
+
+[battery]
+label=BAT 
+command=cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -n1 | awk '{print $1"%"}'
+interval=30
+
+[time]
+command=date '+%Y-%m-%d %H:%M'
+interval=1

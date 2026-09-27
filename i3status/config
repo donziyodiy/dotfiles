@@ -1,0 +1,53 @@
+general {
+    colors = true
+    interval = 1
+    color_good = "#5eacd3"
+    color_degraded = "#f0c674"
+    color_bad = "#cc6666"
+}
+
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "volume master"
+order += "read_file brightness"
+order += "battery all"
+order += "tztime local"
+
+wireless _first_ {
+    format_up = "WIFI %essid %quality"
+    format_down = "WIFI down"
+}
+
+ethernet _first_ {
+    format_up = "ETH %ip"
+    format_down = ""
+}
+
+volume master {
+    format = "VOL %volume"
+    format_muted = "VOL muted"
+    device = "pulse"
+    mixer = "Master"
+    mixer_idx = 0
+}
+
+read_file brightness {
+    path = "/home/donziyodiy/.cache/brightness"
+    format = "BRI %content"
+}
+
+battery all {
+    format = "%status %percentage %remaining"
+    format_down = ""
+    status_chr = "CHR"
+    status_bat = "BAT"
+    status_full = "FULL"
+    last_full_capacity = true
+    integer_battery_capacity = true
+    low_threshold = 15
+    threshold_type = "percentage"
+}
+
+tztime local {
+    format = "%Y-%m-%d %H:%M"
+}
