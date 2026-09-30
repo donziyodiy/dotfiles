@@ -131,6 +131,7 @@ exec --no-startup-id copyq
 exec --no-startup-id xsettingsd
 exec --no-startup-id setxkbmap -layout "us,ru" -option "ctrl:nocaps,grp:alt_shift_toggle,grp_led:scroll"
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -c 000000
+exec --no-startup-id conky -c ~/.config/conky/calendar.conf
 
 bar {
     status_command i3status -c /home/donziyodiy/.config/i3status/config
